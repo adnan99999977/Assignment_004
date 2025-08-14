@@ -1,35 +1,38 @@
-// Problem-01 : Train TT's Fine Calculator ......................................
+
+// Problem-01 : Train TT's Fine Calculator ....................................
 
 function totalFine( fare ) {
-    let extraFee = fare * (20/100);
-    const fine = fare + extraFee + 30  ;
-        if(typeof fare !== "number" ||  fare <=0  ){
+            if(typeof fare !== "number" ||  fare <=0  ){
     return  "Invalid"
 }
+    let extraFee = fare * (20/100);
+    const fine = fare + extraFee + 30  ;
     return fine
 }
 
 
 
 
-// Problem-02 : Clean & Capitalize Characters ...................................
+// Problem-02 : Clean & Capitalize Characters ................................
 
 function  onlyCharacter( str ) {
 
     if(typeof str !== "string"){
         return "Invalid"
     }
-    let  character = str.split(" ").join("").toUpperCase()
-    return  character
+    let text = str.split(" ").join("").toUpperCase()
+    return text
 }
 
 
 
 
-// Problem-03 : FIFA Best Team Award ..........................................
+
+// Problem-03 : FIFA Best Team Award .......................................
 
 function bestTeam(player1, player2) {
-  if (typeof player1 !== "object" || typeof player2 !== "object") {
+  if (typeof player1 !== "object" || player1 === null || Array.isArray(player1) ||
+      typeof player2 !== "object" || player2 === null || Array.isArray(player2) ) {
     return "Invalid";
   }
 
@@ -50,27 +53,30 @@ function bestTeam(player1, player2) {
 
 
 
+
 // Problem-04: Same Same But Different......................................
 
 function isSame(arr1, arr2) {
   if (!Array.isArray(arr1) || !Array.isArray(arr2)) {
     return "Invalid";
   }
+    if(arr1.length !== arr2.length  ) {
+        return false
+    }
+
   for (let i = 0; i < arr1.length; i++) {
-    if (arr1[1] === arr2[i] && arr1.length === arr2.length) {
-      return true;
+    if(arr1[i] !== arr2[i] ) {
+      return false;
     }
   }
-  return false;
+  
+  return true;
 }
 
 
 
 
-
-
-
-// Problem-05: Exam Result Report Generator ...................................
+// Problem-05: Exam Result Report Generator ......................................
 
 function resultReport(marks) {
   if (!Array.isArray(marks)) {
@@ -81,14 +87,14 @@ function resultReport(marks) {
   let countPassSub = 0;
   let countFailSub = 0;
   let totalMark = 0;
-  for (mark of marks) {
+  for (let mark of marks) {
     totalMark += mark;
     finalMark = totalMark / marks.length;
-    if (mark < passMark) {
-      countFailSub++;
-    }
-    if (mark > passMark) {
+    if (mark >= passMark) {
       countPassSub++;
+    }
+    else {
+      countFailSub++;
     }
   }
   return {
